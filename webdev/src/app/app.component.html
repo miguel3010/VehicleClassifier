@@ -1,0 +1,42 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light navbar-dark py-0" style="background-color: #7b1fa2;">
+  <a class="navbar-brand" href="#">Classificador de Vehiculos</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link tensorboard_btn " href="http://desktop-hp91kr0:6006/#scalars&_smoothingWeight=0.999">Tensorboard
+          <i class="fas fa-angle-right tensorboard_icon"></i>
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+ 
+<!-- Wrapper -->
+<div class="container-fluid wrapper">
+  <div class="row">
+    <div class="col-8 display ">
+      <img [src]="currentImage" > 
+    </div>
+    <div class="col-4 output"> 
+      <input type="file" name="imageUpload" id="imageUpload" style="display: none;" #fileInput (change)="onSelectFile($event)" class="hide"/> 
+      <label for="imageUpload" class="btn btn-outline-primary btn-lg btn-block">Seleccionar imagen</label>
+      <ul *ngIf="results" class="list-group predictions">
+        <li class="list-group-item " [ngClass]="(i==0)?'active':''" *ngFor="let item of results; let i = index" >{{item.label}}
+          <span class="badge badge-light">{{item.prob | number}}</span>
+        </li>         
+      </ul>
+      <div *ngIf="!results" class="alert alert-primary" role="alert" style="margin-top: 20px">
+         No hay resultados en la clasificación! 
+      </div>
+    </div>
+  </div>
+</div>
